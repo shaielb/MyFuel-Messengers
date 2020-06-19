@@ -7,5 +7,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Messages"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Entities"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Annotations"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -9,15 +9,27 @@ import messages.Message;
 
 public class DbUpdateNode extends Node<Message> {
 
+	/**
+	 * 
+	 */
 	private static final String DbComponent = "dbComponent";
 
+	/**
+	 * 
+	 */
 	private IDbComponent _dbComponent;
 
+	/**
+	 *
+	 */
 	@Override
 	public void initialize() throws Exception {
 		_dbComponent = (IDbComponent) _iocContainer.resolve(DbComponent);
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public boolean execute(Message message) {
 		try {
@@ -26,11 +38,11 @@ public class DbUpdateNode extends Node<Message> {
 				_dbComponent.update(entity);
 			}
 			message.getResponse().setEntities(entities);
-			message.getResponse().setIndicator(true);
+			message.getResponse().setPassed(true);
 			message.getResponse().setDescription("Entities Were Updated In Db");
 		} catch (Exception e) {
 			e.printStackTrace();
-			message.getResponse().setIndicator(false);
+			message.getResponse().setPassed(false);
 			message.getResponse().setDescription(e.getMessage());
 			return false;
 		}

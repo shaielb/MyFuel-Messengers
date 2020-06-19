@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import db.IDbComponent;
-import db.interfaces.*;
-import globals.Globals;
 import cor.link.node.Node;
+import db.IDbComponent;
+import db.interfaces.IEntity;
+import globals.Globals;
 import messages.Message;
 import messages.Request;
 import utilities.Cache;
@@ -16,15 +16,27 @@ import utilities.Cache;
 @SuppressWarnings("unchecked")
 public class DbCollectNode extends Node<Message> {
 
+	/**
+	 * 
+	 */
 	private static final String DbComponent = "dbComponent";
 
+	/**
+	 * 
+	 */
 	private IDbComponent _dbComponent;
 
+	/**
+	 *
+	 */
 	@Override
 	public void initialize() throws Exception {
 		_dbComponent = (IDbComponent) _iocContainer.resolve(DbComponent);
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public boolean execute(Message message) {
 		try {
@@ -52,11 +64,11 @@ public class DbCollectNode extends Node<Message> {
 				entitiesMap.putAll(_dbComponent.collect(tablesLeft.toArray(new String[tablesLeft.size()])));
 			}
 			//returning the collected tables
-			message.getResponse().setIndicator(true);
+			message.getResponse().setPassed(true);
 			message.getResponse().setTablesMap(entitiesMap);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message.getResponse().setIndicator(false);
+			message.getResponse().setPassed(false);
 			message.getResponse().setDescription(e.getMessage());
 			return false;
 		}
