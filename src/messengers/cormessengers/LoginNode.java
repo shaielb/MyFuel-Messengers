@@ -104,10 +104,10 @@ public class LoginNode extends Node<Message> {
 				}
 				employee.setPerson(pesron);
 				
-				FuelCompanyEnum fuelCompanyEnum = collectFuelCompany(message, employee.getFuelCompanyEnum());
+				FuelCompanyEnum fuelCompanyEnum = (employee.getFuelCompanyEnum() == null) ? null : collectFuelCompany(message, employee.getFuelCompanyEnum());
 				employee.setFuelCompanyEnum(fuelCompanyEnum);
 				
-				Station station = collectStation(message, employee.getStation());
+				Station station = (employee.getStation() == null) ? null : collectStation(message, employee.getStation());
 				employee.setStation(station);
 				
 				set.add(pesron);
